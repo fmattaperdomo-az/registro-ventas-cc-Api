@@ -81,7 +81,7 @@ const registrador_centro_comercialSchema = new mongoose.Schema({
         type : mongoose.Schema.ObjectId,
         ref : 'Centro_Comercial',
         required : true
-    }    
+    }     
 });
 
-module.exports = mongoose.model('Registrador_Centro_Comercial', registrador_centro_comercialSchema);
+module.exports = mongoose.model('administrador_centro_comercial', registrador_centro_comercialSchema);

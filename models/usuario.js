@@ -22,11 +22,11 @@ const usuarioSchema = new mongoose.Schema({
     rol : {
         type : String,
         enum : {
-            values : ['registrador_locatario', 'registrador_centro_comercial', 'administrador'],
+            values : ['usuario_registrador', 'administrador_centro_comercial', 'admin_administrador', 'propietario_sistema'],
             message : 'Por favor seleccione un rol correcto'
         },
         required : [true, 'Seleccione el rol que es obligatorio'],
-        default : 'registrador_locatario'
+        default : 'usuario_registrador'
     },
     clave : {
         type : String,

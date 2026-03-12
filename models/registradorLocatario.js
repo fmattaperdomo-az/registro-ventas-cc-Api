@@ -82,15 +82,20 @@ const registrador_locatarioSchema = new mongoose.Schema({
         type : mongoose.Schema.ObjectId,
         ref : 'Locatario',
         required : true
-    }    
+    },    
+    centro_comercial : {
+        type : mongoose.Schema.ObjectId,
+        ref : 'Centro_Comercial',
+        required : true
+    }      
 });
 
 // Muestra todos las ventas por usuario
 registrador_locatarioSchema.virtual('ventasRegistradas', {
     ref : 'Venta',
     localField : '_id',
-    foreignField : 'registrador_locatario',
+    foreignField : 'usuario_registrador',
     justOne : false
 });
 
-module.exports = mongoose.model('Registrador_Locatario', registrador_locatarioSchema);
+module.exports = mongoose.model('usuario_registrador', registrador_locatarioSchema);

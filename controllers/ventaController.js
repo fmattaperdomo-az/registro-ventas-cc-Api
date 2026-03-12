@@ -112,7 +112,7 @@ exports.actualizarVenta = catchAsyncErrors(async (req, res, next) => {
     }
 
     // Validar el rol 
-    //if (venta.registrador_locatario.toString() !== req.usuario.id && req.usuario.rol !== 'registrador_centro_comercial') {
+    //if (venta.registrador_locatario.toString() !== req.usuario.id && req.usuario.rol !== 'administrador_centro_comercial') {
     //    return next(new ErrorHandler(`Usuario (${req.user.id}) no tiene autorización para modificar esta venta.`))
     //}
 

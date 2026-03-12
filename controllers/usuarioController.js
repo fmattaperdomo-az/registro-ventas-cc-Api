@@ -58,3 +58,14 @@ exports.obtenerUsuarios = catchAsyncErrors( async (req, res, next) => {
     })
 });
 
+// Solamente para administradores y/o registrador de centros comerciales
+// Mostrar el usuario  del sistema  =>   /api/v1/usuarios/:id
+exports.obtenerUsuario = catchAsyncErrors( async(req, res, next) => {
+    const usuario = await Usuario.findById(req.params.id);
+
+    res.status(200).json({
+        resultado : true,
+        data : usuario
+    })
+});
+

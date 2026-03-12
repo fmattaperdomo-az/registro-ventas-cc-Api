@@ -12,16 +12,16 @@ const { obtenerVenta,
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
-router.route('/venta').post(isAuthenticatedUser,authorizeRoles('registrador_locatario','administrador'),crearVenta)
+router.route('/venta').post(isAuthenticatedUser,authorizeRoles('usuario_registrador', 'administrador_centro_comercial','admin_administrador', 'propietario_sistema'),crearVenta)
 
 router.route('/venta/:id')
-    .get(isAuthenticatedUser,authorizeRoles('registrador_locatario','administrador'),obtenerVenta)
-    .put(isAuthenticatedUser,authorizeRoles('registrador_locatario','administrador'),actualizarVenta);
+    .get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),obtenerVenta)
+    .put(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),actualizarVenta);
 
-router.route('/ventas').get(isAuthenticatedUser,authorizeRoles('registrador_locatario','administrador'),obtenerVentasPaginada);
-router.route('/ventas/:locatario').get(isAuthenticatedUser,authorizeRoles('registrador_locatario','administrador'),obtenerVentasLocatario);
-router.route('/ventas/:locatario/:fecha_registro').get(isAuthenticatedUser,authorizeRoles('registrador_locatario','administrador'),obtenerVentasLocatarioFecha);
-router.route('/ventas/:locatario/:fechaIni/:fechaFin').get(isAuthenticatedUser,authorizeRoles('registrador_locatario','administrador'),obtenerVentasLocatarioRangoFechas);
-router.route('/estadisticas/:topico').get(isAuthenticatedUser,authorizeRoles('registrador_locatario','administrador'),estadisticasVentas);
+router.route('/ventas').get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),obtenerVentasPaginada);
+router.route('/ventas/:locatario').get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),obtenerVentasLocatario);
+router.route('/ventas/:locatario/:fecha_registro').get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),obtenerVentasLocatarioFecha);
+router.route('/ventas/:locatario/:fechaIni/:fechaFin').get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),obtenerVentasLocatarioRangoFechas);
+router.route('/estadisticas/:topico').get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),estadisticasVentas);
 
 module.exports = router;

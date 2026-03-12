@@ -4,14 +4,18 @@ const router = express.Router();
 const { 
     obtenerUsuarios,
     actualizarClave,
-    actualizarUsuario
+    actualizarUsuario,
+    obtenerUsuario
+
  } = require('../controllers/usuarioController');
 
 const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
-router.route('/clave/actualizar').put(isAuthenticatedUser, authorizeRoles('registrador_locatario', 'registrador_centro_comercial','administrador'),actualizarClave);
-router.route('/usuario/actualizar').put(isAuthenticatedUser, authorizeRoles('registrador_locatario', 'registrador_centro_comercial','administrador'),actualizarUsuario);
+router.route('/clave/actualizar').put(isAuthenticatedUser, authorizeRoles('usuario_registrador', 'administrador_centro_comercial','admin_administrador', 'propietario_sistema'),actualizarClave);
+router.route('/usuario/actualizar').put(isAuthenticatedUser, authorizeRoles('usuario_registrador', 'administrador_centro_comercial','admin_administrador', 'propietario_sistema'),actualizarUsuario);
 
-router.route('/usuarios').get(isAuthenticatedUser, authorizeRoles('registrador_locatario', 'registrador_centro_comercial','administrador'),obtenerUsuarios);
+router.route('/usuarios').get(isAuthenticatedUser, authorizeRoles('usuario_registrador', 'administrador_centro_comercial','admin_administrador', 'propietario_sistema'),obtenerUsuarios);
+
+router.route('/usuarios/:id').get(isAuthenticatedUser, authorizeRoles('usuario_registrador', 'administrador_centro_comercial','admin_administrador', 'propietario_sistema'),obtenerUsuario);
 
 module.exports = router;
