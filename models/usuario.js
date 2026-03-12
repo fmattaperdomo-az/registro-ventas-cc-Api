@@ -36,6 +36,15 @@ const usuarioSchema = new mongoose.Schema({
         maxlength : [16, 'Contraseña no puede superar los 16 caracteres.'],
         select : false
     },
+    estado : {
+        type : String,
+        enum : {
+            values : ['activo', 'inactivo'],
+            message : 'Por favor seleccione un estado correcto'
+        },
+        required : [true, 'Seleccione el estado que es obligatorio'],
+        default : 'activo'
+    },
     fecha_registro : {
         type : Date,
         default : Date.now
