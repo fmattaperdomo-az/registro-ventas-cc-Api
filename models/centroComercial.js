@@ -47,9 +47,14 @@ const centro_comercialSchema = new mongoose.Schema({
         maxlength : [100, 'Correo del contacto principal no puede superar los 100 caracteres.'],
         validate : [validator.isEmail, 'Ingrese un correo electrónico válido.']
     },
-    activo : {
-        type : Number,
-        default:1
+    estado : {
+        type : String,
+        enum : {
+            values : ['activo', 'inactivo'],
+            message : 'Por favor seleccione un estado correcto'
+        },
+        required : [true, 'Seleccione el estado que es obligatorio'],
+        default : 'activo'
     },
     fecha_inicio : {
         type : Date,
