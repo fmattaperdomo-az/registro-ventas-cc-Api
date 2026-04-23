@@ -60,9 +60,14 @@ const registrador_centro_comercialSchema = new mongoose.Schema({
         },        
         default : 'Principal'
     },
-    activo : {
-        type : Number,
-        default:1
+    estado : {
+        type : String,
+        enum : {
+            values : ['activo', 'inactivo'],
+            message : 'Por favor seleccione un estado correcto'
+        },
+        required : [true, 'Seleccione el estado que es obligatorio'],
+        default : 'activo'
     },
     fecha_registro : {
         type : Date,
