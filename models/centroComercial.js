@@ -51,6 +51,14 @@ const centro_comercialSchema = new mongoose.Schema({
         type : Number,
         default:1
     },
+    fecha_inicio : {
+        type : Date,
+        default : Date.now
+    },    
+    fecha_fin : {
+        type : Date,
+        default : Date.now
+    },    
     fecha_registro : {
         type : Date,
         default : Date.now
