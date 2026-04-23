@@ -31,9 +31,14 @@ const locatarioSchema = new mongoose.Schema({
         ref : 'Segmento',
         required : [true, 'Ingrese el código del segmento.'],
     },        
-    activo : {
-        type : Number,
-        default:1
+    estado : {
+        type : String,
+        enum : {
+            values : ['activo', 'inactivo'],
+            message : 'Por favor seleccione un estado correcto'
+        },
+        required : [true, 'Seleccione el estado que es obligatorio'],
+        default : 'activo'
     },
     fecha_registro : {
         type : Date,
