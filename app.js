@@ -74,6 +74,7 @@ const segmento = require('./routes/segmento');
 const locatario = require('./routes/locatario');
 const registradorLocatario = require('./routes/registradorLocatario');
 const registradorCentroComercial = require('./routes/registradorCentroComercial');
+const registrador = require('./routes/registrador');
 const parametro = require('./routes/parametro');
 const tipoDocumento = require('./routes/tipoDocumento');
 
@@ -86,6 +87,7 @@ app.use('/api/v1', segmento);
 app.use('/api/v1', locatario);
 app.use('/api/v1', registradorLocatario);
 app.use('/api/v1', registradorCentroComercial);
+app.use('/api/v1', registrador);
 app.use('/api/v1', parametro);
 app.use('/api/v1', tipoDocumento);
 
