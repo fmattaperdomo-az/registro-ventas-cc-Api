@@ -75,6 +75,7 @@ const locatario = require('./routes/locatario');
 const registradorLocatario = require('./routes/registradorLocatario');
 const registradorCentroComercial = require('./routes/registradorCentroComercial');
 const parametro = require('./routes/parametro');
+const tipoDocumento = require('./routes/tipoDocumento');
 
 app.use('/api/v1', venta);
 app.use('/api/v1', centroComercial);
@@ -86,6 +87,7 @@ app.use('/api/v1', locatario);
 app.use('/api/v1', registradorLocatario);
 app.use('/api/v1', registradorCentroComercial);
 app.use('/api/v1', parametro);
+app.use('/api/v1', tipoDocumento);
 
 // Manejo de rutas no manejadas
 app.all('*', (req, res, next) => {
