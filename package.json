@@ -8,7 +8,8 @@
   "main": "app.js",
   "scripts": {
     "start": "SET NODE_ENV=produccion & node app.js",
-    "dev": "nodemon app"
+    "dev": "nodemon app",
+    "build": "echo No hay paso de compilación para este proyecto && exit 0"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

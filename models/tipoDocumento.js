@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const tipoDocumentoSchema = new mongoose.Schema({
-    nombre_documento : {
+    nombre_tipo_documento : {
         type : String,
         required : [true, 'Ingrese el nombre de documento.'],
         trim : true,
