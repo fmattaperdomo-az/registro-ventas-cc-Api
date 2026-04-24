@@ -1,5 +1,5 @@
 // crea y envia el token para ser guardado en cookie
-const sendToken = (usuario, centroComercial, statusCode, res) => {
+const sendToken = (usuario, centroComercial, registrador, statusCode, res) => {
     // Crea JWT Token
     var token = usuario.getJwtToken();
 
@@ -20,6 +20,7 @@ const sendToken = (usuario, centroComercial, statusCode, res) => {
             resultado : true,
             usuario,
             centroComercial,
+            registrador,
             token
         });
 

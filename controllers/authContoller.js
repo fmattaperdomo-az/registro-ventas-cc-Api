@@ -1,6 +1,5 @@
 const Usuario = require('../models/usuario');
-const RegistradorLocatario = require('../models/registradorLocatario');
-const RegistradorCentroComercial = require('../models/registradorCentroComercial');
+const Registrador = require('../models/registrador');
 const CentroComercial = require('../models/centroComercial');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const ErrorHandler = require('../utils/errorHandler');
@@ -51,17 +50,11 @@ exports.loginUsuario = catchAsyncErrors( async (req, res, next) => {
 
     let centroComercial = null;
     //Buscando el centro comercial del registrador locatario
-    const registradorLocatario = await RegistradorLocatario.findOne({correo : usuario.correo});
-    if(registradorLocatario) {
-        centroComercial = await CentroComercial.findById(registradorLocatario.centro_comercial);
-    } else {
-        //Buscando el centro comercial del registrador centro comercial
-        const registradorCentroComercial = await RegistradorCentroComercial.findOne({correo : usuario.correo});
-        if(registradorCentroComercial) {
-            centroComercial = await CentroComercial.findById(registradorCentroComercial.centro_comercial);
-        }
+    const registrador = await Registrador.findOne({correo : usuario.correo});
+    if(registrador) {
+        centroComercial = await CentroComercial.findById(registrador.centro_comercial);
     }
-    sendToken(usuario, centroComercial, 200, res);
+    sendToken(usuario, centroComercial,registrador, 200, res);
 });
 
 // Olvido de clave  =>  /api/v1/clave/olvido
