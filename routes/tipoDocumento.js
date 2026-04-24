@@ -3,7 +3,7 @@ const router = express.Router();
  
 const { 
     obtenerTipoDocumento,
-    obtenerTipoDocumento,
+    obtenerTipoDocumentos,
     obtenerTipoDocumentosPaginada,
     crearTipoDocumento,
     actualizarTipoDocumento,

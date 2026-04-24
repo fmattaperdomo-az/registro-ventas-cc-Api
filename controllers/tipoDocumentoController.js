@@ -48,7 +48,7 @@ exports.actualizarTipoDocumento = catchAsyncErrors( async(req, res, next) => {
 });
 
 // Mostrar todos las tipoDocumentos   =>   /api/v1/tipoDocumentos
-exports.obtenerTipoDocumentoPaginada = catchAsyncErrors( async (req, res, next) => {
+exports.obtenerTipoDocumentosPaginada = catchAsyncErrors( async (req, res, next) => {
     const apiFilters = new APIFilters(TipoDocumento.find(), req.query)
         .filter()
         .sort()
