@@ -73,10 +73,9 @@ const registradorSchema = new mongoose.Schema({
         required : true
     },
     locatario : {
-        type : mongoose.Schema.ObjectId,
-        ref : 'Locatario',
-        required : true
+        type : String,
+        default : ''
     }
 });
 
-module.exports = mongoose.model('registrador', registradorSchema);
+module.exports = mongoose.model('Registrador', registradorSchema);
