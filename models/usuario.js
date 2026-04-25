@@ -53,6 +53,11 @@ const usuarioSchema = new mongoose.Schema({
         type : Date,
         default : Date.now
     },    
+    usuario_registro : {
+        type : mongoose.Schema.ObjectId,
+        ref : 'Usuario',
+        required : true
+    },
     resetPasswordToken : String,
     resetPasswordExpire : Date
 },
