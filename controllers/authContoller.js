@@ -9,12 +9,14 @@ const crypto = require('crypto');
  
 //Registrar usuario ==> /api/v1/registrar
 exports.registrarUsuario = catchAsyncErrors(async (req,res,next) => {
-    const {nombre_completo, correo,rol, clave} = req.body;
+    const {nombre_completo, correo,rol, clave, usuario_registro} = req.body;
     const usuario = await Usuario.create({
         nombre_completo, 
         correo,
         rol, 
-        clave
+        clave,
+        usuario_registro
+
     });
     res.status(200).json({
         resultado: true,
