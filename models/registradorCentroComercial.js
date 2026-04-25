@@ -79,8 +79,7 @@ const registrador_centro_comercialSchema = new mongoose.Schema({
     },
     usuario_registro : {
         type : mongoose.Schema.ObjectId,
-        ref : 'Usuario',
-        required : true
+        ref : 'Usuario'
     },
     centro_comercial : {
         type : mongoose.Schema.ObjectId,
