@@ -28,6 +28,22 @@ const ventaSchema = new mongoose.Schema({
         trim : true,
         maxlength : [4, "Año no puede superar los 4 caracteres."]
     },
+    dia : {
+        type : Number,
+        required : [true, "Ingrese el día."],
+        trim : true,
+        maxlength : [2, "Día no puede superar los 2 caracteres."]
+    },
+    validado : {
+        type : Number,
+        required : [true, "Ingrese si es validado."],
+        maxlength : [1, "Validado no puede superar los 1 caracteres."]
+    },
+    no_tiene_ingreso : {
+        type : Number,
+        required : [true, "Ingrese si no tiene ingreso."],
+        maxlength : [1, "No tiene ingreso no puede superar los 1 caracteres."]
+    },
     venta : {
         type : Number,
         required : [true, "La venta del día."],

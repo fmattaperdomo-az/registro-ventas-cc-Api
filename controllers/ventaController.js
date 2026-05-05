@@ -103,6 +103,24 @@ const ventas = await Venta.find({ $and: [{ locatario: req.params.locatario }, { 
     })
 });
 
+// obtener todas las ventas dado un centro comercial, locatario, mes, anio =>   /api/v1/ventasLocatario?centro_comercial=6931120a78616b2698884870&locatario=6930fa09460b1b13c096a78a&mes=Marzo&anio=2026
+exports.obtenerVentasLocatarioRangoFechas = catchAsyncErrors( async (req, res, next) => {
+    const ventas = await Venta.find({ $and: [{ centro_comercial: req.query.centro_comercial }, { locatario: req.query.locatario }, { mes: req.query.mes }, { anio: req.query.anio }] }).populate({
+        path: 'venta',
+        select: 'mes anio dia validado no_tiene_ingreso venta fecha_registro locatario centro_comercial'
+    });
+
+    if (!ventas || ventas.length === 0) {
+        return next(new ErrorHandler('Venta no encontrada', 404));
+    }
+
+    res.status(200).json({
+        success : true,
+        results : ventas.length,
+        data : ventas
+    })
+});
+
 // Actualizar un venta  =>  /api/v1/venta/:id
 exports.actualizarVenta = catchAsyncErrors(async (req, res, next) => {
     var venta = await Venta.findById(req.params.id);
