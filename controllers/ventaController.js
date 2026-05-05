@@ -107,7 +107,7 @@ const ventas = await Venta.find({ $and: [{ locatario: req.params.locatario }, { 
 exports.obtenerVentasLocatarioMesAnio = catchAsyncErrors( async (req, res, next) => {
     const ventas = await Venta.find({ $and: [{ centro_comercial: req.query.centro_comercial }, { locatario: req.query.locatario }, { mes: req.query.mes }, { anio: req.query.anio }] }).populate({
         path: 'venta',
-        select: 'mes anio dia validado no_tiene_ingreso venta fecha_registro locatario centro_comercial'
+        select: '_id mes anio dia validado no_tiene_ingreso venta fecha_registro locatario centro_comercial'
     });
 
     if (!ventas || ventas.length === 0) {
