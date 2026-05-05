@@ -116,9 +116,13 @@ exports.obtenerVentasLocatarioMesAnio = catchAsyncErrors( async (req, res, next)
         return next(new ErrorHandler('centro_comercial o locatario inválido.', 400));
     }
 
-    const ventas = await Venta.find({ $and: [{ centro_comercial: req.query.centro_comercial }, { locatario: req.query.locatario }, { mes: req.query.mes }, { anio: req.query.anio }] }).populate({
-        path: 'venta',
-        select: '_id mes anio dia validado no_tiene_ingreso venta fecha_registro locatario centro_comercial'
+    const ventas = await Venta.find({
+        $and: [
+            { centro_comercial: centro_comercial },
+            { locatario: locatario },
+            { mes: mes },
+            { anio: anio }
+        ]
     });
 
     if (!ventas || ventas.length === 0) {
