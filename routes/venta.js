@@ -7,6 +7,7 @@ const { obtenerVenta,
         obtenerVentasLocatario,
         obtenerVentasLocatarioFecha,
         obtenerVentasLocatarioRangoFechas,
+        obtenerVentasLocatarioMesAnio,
         actualizarVenta,
         estadisticasVentas} = require('../controllers/ventaController');
 
@@ -22,6 +23,7 @@ router.route('/ventas').get(isAuthenticatedUser,authorizeRoles('usuario_registra
 router.route('/ventas/:locatario').get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),obtenerVentasLocatario);
 router.route('/ventas/:locatario/:fecha_registro').get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),obtenerVentasLocatarioFecha);
 router.route('/ventas/:locatario/:fechaIni/:fechaFin').get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),obtenerVentasLocatarioRangoFechas);
+router.route('/ventasLocatario').get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),obtenerVentasLocatarioMesAnio);
 router.route('/estadisticas/:topico').get(isAuthenticatedUser,authorizeRoles('usuario_registrador','admin_administrador', 'propietario_sistema'),estadisticasVentas);
 
 module.exports = router;

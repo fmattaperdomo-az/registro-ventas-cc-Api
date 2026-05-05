@@ -104,7 +104,7 @@ const ventas = await Venta.find({ $and: [{ locatario: req.params.locatario }, { 
 });
 
 // obtener todas las ventas dado un centro comercial, locatario, mes, anio =>   /api/v1/ventasLocatario?centro_comercial=6931120a78616b2698884870&locatario=6930fa09460b1b13c096a78a&mes=Marzo&anio=2026
-exports.obtenerVentasLocatarioRangoFechas = catchAsyncErrors( async (req, res, next) => {
+exports.obtenerVentasLocatarioMesAnio = catchAsyncErrors( async (req, res, next) => {
     const ventas = await Venta.find({ $and: [{ centro_comercial: req.query.centro_comercial }, { locatario: req.query.locatario }, { mes: req.query.mes }, { anio: req.query.anio }] }).populate({
         path: 'venta',
         select: 'mes anio dia validado no_tiene_ingreso venta fecha_registro locatario centro_comercial'
