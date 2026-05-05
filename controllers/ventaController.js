@@ -1,4 +1,5 @@
 const Venta = require('../models/venta');
+const mongoose = require('mongoose');
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const APIFilters = require('../utils/apiFilters');
@@ -105,6 +106,16 @@ const ventas = await Venta.find({ $and: [{ locatario: req.params.locatario }, { 
 
 // obtener todas las ventas dado un centro comercial, locatario, mes, anio =>   /api/v1/ventasLocatario?centro_comercial=6931120a78616b2698884870&locatario=6930fa09460b1b13c096a78a&mes=Marzo&anio=2026
 exports.obtenerVentasLocatarioMesAnio = catchAsyncErrors( async (req, res, next) => {
+    const { centro_comercial, locatario, mes, anio } = req.query;
+
+    if(!centro_comercial || !locatario || !mes || !anio) {
+        return next(new ErrorHandler('Ingrese centro_comercial, locatario, mes y anio.', 400));
+    }
+
+    if(!mongoose.Types.ObjectId.isValid(centro_comercial) || !mongoose.Types.ObjectId.isValid(locatario)) {
+        return next(new ErrorHandler('centro_comercial o locatario inválido.', 400));
+    }
+
     const ventas = await Venta.find({ $and: [{ centro_comercial: req.query.centro_comercial }, { locatario: req.query.locatario }, { mes: req.query.mes }, { anio: req.query.anio }] }).populate({
         path: 'venta',
         select: '_id mes anio dia validado no_tiene_ingreso venta fecha_registro locatario centro_comercial'

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 const Usuario = require('../models/usuario');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const ErrorHandler = require('../utils/errorHandler');
@@ -11,14 +12,22 @@ exports.isAuthenticatedUser = catchAsyncErrors( async (req, res, next) => {
         token = req.headers.authorization.split(' ')[1];
     }
 
-    console.log(token);
-
     if(!token) {
         return next(new ErrorHandler('Primero Login para acceder a este recurso.', 401));
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.usuario = await Usuario.findById(decoded.id);
+    const usuarioId = decoded.id || decoded._id;
+
+    if(!usuarioId || !mongoose.Types.ObjectId.isValid(usuarioId)) {
+        return next(new ErrorHandler('Token inválido. Vuelva a iniciar sesión.', 401));
+    }
+
+    req.usuario = await Usuario.findById(usuarioId);
+
+    if(!req.usuario) {
+        return next(new ErrorHandler('Usuario no encontrado. Vuelva a iniciar sesión.', 401));
+    }
 
     next();
 });
